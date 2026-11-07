@@ -198,7 +198,20 @@ Contributions, bug reports, and feature suggestions are welcome.
 
 ## License
 
-A `LICENSE` file is not currently present in the repository root. The licensing terms therefore need to be clarified by the project maintainer before the project is redistributed or presented as MIT-licensed.
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Donate
+
+If you find PixTui useful, consider supporting the project:
+
+- **Bitcoin (BTC):** `bc1qegkxu0cp2r83hne8642afst90l68du05datn3x`
+- **TON:** `UQCslWQYJEiaLlw4-Zl3qI4fYL0G0xV6KtIfTel-4pz11Ygt`
+
+## Contact
+
+Gomobra — [@Gomobra](https://github.com/Gomobra)
+
+Project Link: [https://github.com/Gomobra/PixTui](https://github.com/Gomobra/PixTui)
 
 ## Links
 
