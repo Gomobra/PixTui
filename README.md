@@ -1,45 +1,147 @@
 # PixTui
 
-[![Go Version](https://img.shields.io/badge/go-1.26+-blue.svg)](https://golang.org/)
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)]()
+[![Go](https://img.shields.io/badge/Go-1.26+-00ADD8?logo=go&logoColor=white)](https://go.dev/)
+[![CI](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml/badge.svg)](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml)
 
-A Go library for building beautiful terminal user interfaces (TUI) with rich layouts, interactive components, and reactive programming.
+**PixTui is a Go library for building terminal user interfaces (TUI).** It provides a component-based rendering model, Yoga-powered layout, interactive terminal widgets, and supporting packages for building full-screen command-line applications.
 
-## About
+> The public API and feature coverage may evolve. Check the source and package APIs before relying on a feature in production.
 
-PixTui is a Go library for creating terminal applications with rich layouts, interactive components, and reactive programming. Inspired by modern UI frameworks, PixTui brings a component-based approach to terminal UI development.
+## Highlights
 
-Whether you are building a CLI dashboard, a text editor, or a full-screen terminal application, PixTui provides the building blocks you need.
+- **Composable renderables** — Build interfaces by nesting components such as boxes, text, inputs, selects, textareas, sliders, tables, and more.
+- **Flexbox layout** — Use Yoga-backed layout properties to arrange and size UI elements.
+- **Terminal rendering** — Render component trees through a CLI renderer with frame updates, terminal input, and resize handling.
+- **Interactive UI** — Work with keyboard and mouse event hooks, focusable elements, and reusable input components.
+- **Developer-oriented views** — Display code, Markdown, diffs, line numbers, and scrollable content.
+- **Media and graphics** — Use image, video, framebuffer, ASCII-font, and 3D-related packages.
+- **Additional tooling** — The repository also contains packages for keymaps, animation, plugins, QR codes, SSH, and an HTTP documentation server.
+- **Reactive integrations** — React-style and Solid-style packages are included for declarative UI patterns.
 
-## Features
+## Components
 
-- **22 renderable components** — Box, Text, Input, Select, ScrollBox, Textarea, Slider, Markdown, Code, Video, Image, and more
-- **Yoga flexbox layout** — Responsive terminal layouts with flexbox
-- **React & Solid bindings** — Reactive UI with signals, effects, and context
-- **SSH server** — Password, public key, and keyboard-interactive authentication
-- **Three.js renderer** — CPU-based 3D rendering in terminal
-- **QR code encoder** — Full QR code generation with Reed-Solomon error correction
-- **Keymap system** — Multi-layer key bindings with Emacs/Vim support
-- **Animation & Timeline** — Tweening and animation engine
-- **Plugin system** — Extensible plugin architecture
-- **Web server** — Built-in HTTP documentation server
-- **122 examples** — Ready-to-run example applications
+The renderables package includes components such as:
+
+| Component | Purpose |
+|---|---|
+| `Box` | Container with optional border and title |
+| `Text` | Text content with wrapping, alignment, and truncation options |
+| `Input` | Single-line text input |
+| `Select` | Selectable options |
+| `ScrollBox` | Scrollable content container |
+| `Textarea` | Multi-line text editing |
+| `Slider` | Numeric value selection |
+| `TabSelect` | Tab-style selection |
+| `EditBuffer` | Editable text buffer view |
+| `TextTable` | Tabular text display |
+| `Code` | Code display |
+| `Markdown` | Markdown content display |
+| `Diff` | Diff-style text display |
+| `Image` / `Video` | Media renderables |
+| `ASCIIFont` | Text rendered with ASCII-style fonts |
+| `FrameBuffer` | Framebuffer-backed content |
+| `LineNumber` | Line-number display |
+| `ScrollBar` | Scroll position indicator |
+
+This list is illustrative rather than a promise that every component has identical interaction or API coverage. Refer to `packages/core/renderables` for the current implementation.
+
+## Requirements
+
+- **Go 1.26 or newer** — the module declares `go 1.26.0` in `go.mod`.
+- A terminal environment for running the interactive renderer. Some terminal features depend on terminal capabilities.
 
 ## Installation
 
-### Prerequisites
-
-- Go 1.26 or higher
-
-### Install
+Add the packages you need to an existing Go module. For example:
 
 ```bash
-go get github.com/Gomobra/PixTui
+go get github.com/Gomobra/PixTui/packages/core/renderables
 ```
 
-### From Source
+The `core` package will be resolved as a dependency of `renderables` where needed. You can also import other PixTui packages directly from their package paths.
+
+## Quick start
+
+The following example creates a bordered box with a text child and renders one frame:
+
+```go
+package main
+
+import (
+	"log"
+
+	"github.com/Gomobra/PixTui/packages/core"
+	"github.com/Gomobra/PixTui/packages/core/renderables"
+)
+
+func main() {
+	if err := run(); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func run() error {
+	renderer := core.NewCliRenderer(80, 24)
+	defer renderer.Destroy()
+
+	renderContext := renderer.Context()
+	root := core.NewRootRenderable(renderContext, "root")
+
+	box := renderables.NewBoxRenderable(renderContext, renderables.BoxOptions{
+		RenderableOptions: core.RenderableOptions[core.Renderable]{
+			ID:      "welcome-box",
+			Width:   stringPtr("60"),
+			Height:  stringPtr("7"),
+			Visible: boolPtr(true),
+		},
+		Border:      true,
+		BorderStyle: "rounded",
+		Title:       "PixTui",
+	})
+
+	message := renderables.NewTextRenderable(renderContext, renderables.TextOptions{
+		RenderableOptions: core.RenderableOptions[core.Renderable]{
+			ID:      "welcome-message",
+			Width:   stringPtr("56"),
+			Height:  stringPtr("3"),
+			Visible: boolPtr(true),
+		},
+		Content: "Hello from PixTui!",
+		Wrap:    true,
+	})
+
+	box.AddChild(message.Renderable)
+	root.AddChild(box.Renderable)
+
+	if err := renderer.Start(); err != nil {
+		return err
+	}
+	if err := renderer.Render(root, 1.0/60.0); err != nil {
+		return err
+	}
+
+	return renderer.WriteFrame()
+}
+
+func stringPtr(value string) *string { return &value }
+func boolPtr(value bool) *bool       { return &value }
+```
+
+This is a **single-frame example**. For a continuously updating application, use `renderer.Run(root)` or implement an application loop that calls `Render` and `WriteFrame` as appropriate. See `cmd/pixtui-demo` for a larger example of the available renderables and renderer setup.
+
+## Run the demo
+
+From the repository root:
+
+```bash
+go run ./cmd/pixtui-demo
+```
+
+Run it from an interactive terminal to see the terminal UI. The current demo entry point launches a combined showcase; it does not currently provide separate `hello`, `box`, `text`, or other subcommands.
+
+## Build and test
+
+Clone the repository and build all packages:
 
 ```bash
 git clone https://github.com/Gomobra/PixTui.git
@@ -47,103 +149,55 @@ cd PixTui
 go build ./...
 ```
 
-## Quick Start
-
-Create a simple terminal application with a box:
-
-```go
-package main
-
-import (
-	"github.com/Gomobra/PixTui/packages/core"
-	"github.com/Gomobra/PixTui/packages/core/renderables"
-)
-
-func main() {
-	renderer := core.NewCliRenderer(80, 24)
-	root := core.NewRootRenderable(renderer.Context())
-
-	box := renderables.NewBoxRenderable(renderer.Context(), renderables.BoxOptions{
-		Content: "Hello, PixTui!",
-	})
-
-	root.AddChild(box)
-	renderer.Render(root)
-}
-```
-
-Run it:
+Run the test suite and static analysis:
 
 ```bash
-go run main.go
+go test ./...
+go vet ./...
 ```
 
-## Examples
+The GitHub Actions workflow runs build, vet, and test checks with Go 1.26 on Ubuntu, Windows, and macOS. See the [CI workflow](.github/workflows/ci.yml) for the exact matrix and commands.
 
-PixTui includes 122 example applications covering all major features:
+## Repository layout
 
-```bash
-# Basic components
-go run ./cmd/pixtui-demo/ hello
-go run ./cmd/pixtui-demo/ box
-go run ./cmd/pixtui-demo/ text
-go run ./cmd/pixtui-demo/ input
-
-go run ./cmd/pixtui-demo/ scrollbox
-go run ./cmd/pixtui-demo/ textarea
-go run ./cmd/pixtui-demo/ slider
-
-# Advanced
-go run ./cmd/pixtui-demo/ video
-go run ./cmd/pixtui-demo/ markdown
-go run ./cmd/pixtui-demo/ code
-go run ./cmd/pixtui-demo/ 3d
-go run ./cmd/pixtui-demo/ ssh
+```text
+PixTui/
+├── cmd/
+│   └── pixtui-demo/       # Demo application
+├── packages/
+│   ├── core/              # Renderable tree, renderer, and UI primitives
+│   ├── native/            # Native terminal, buffer, and layout integration
+│   ├── react/             # React-style integration
+│   ├── solid/             # Solid-style integration
+│   ├── keymap/            # Keyboard binding system
+│   ├── animation/         # Animation and timeline utilities
+│   ├── plugin/            # Plugin infrastructure
+│   ├── qrcode/            # QR code generation
+│   ├── ssh/               # SSH server functionality
+│   ├── three/             # 3D rendering functionality
+│   └── web/               # HTTP documentation server
+├── .github/workflows/     # CI configuration
+├── go.mod
+├── go.sum
+└── Makefile
 ```
-
-## Packages
-
-PixTui is organized into the following packages:
-
-- **native** — Terminal, buffer, image, video, audio, tree-sitter, yoga layout
-- **core** — Renderable system, layout, edit buffer, editor view
-- **react** — React-style hooks and JSX
-- **solid** — Solid-style signals and components
-- **ssh** — SSH server
-- **three** — 3D renderer
-- **web** — HTTP documentation server
-- **keymap** — Key binding engine
-- **animation** — Animation and timeline
-- **plugin** — Plugin system
-- **qrcode** — QR code encoder
-- **examples** — 122 example applications
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions, bug reports, and feature suggestions are welcome.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Open an issue describing the bug or proposal.
+2. Fork the repository and create a focused branch.
+3. Make the change and add or update tests where appropriate.
+4. Run `go build ./...`, `go test ./...`, and `go vet ./...`.
+5. Open a pull request with a clear description of the change.
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+A `LICENSE` file is not currently present in the repository root. The licensing terms therefore need to be clarified by the project maintainer before the project is redistributed or presented as MIT-licensed.
 
-## Contact
+## Links
 
-Gomobra — [@Gomobra](https://github.com/Gomobra)
-
-Project Link: [https://github.com/Gomobra/PixTui](https://github.com/Gomobra/PixTui)
-
-## Acknowledgments
-
-- [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-- [Img Shields](https://shields.io)
-- [GitHub Pages](https://pages.github.com)
-- [Font Awesome](https://fontawesome.com)
+- [Repository](https://github.com/Gomobra/PixTui)
+- [Issues](https://github.com/Gomobra/PixTui/issues)
+- [CI workflow](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml)
