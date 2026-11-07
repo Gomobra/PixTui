@@ -7,31 +7,11 @@
 
 A Go library for building beautiful terminal user interfaces (TUI) with rich layouts, interactive components, and reactive programming.
 
----
-
-## Table of Contents
-
-- [About PixTui](#about-pixtui)
-- [Features](#features)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Examples](#examples)
-- [Packages](#packages)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgments](#acknowledgments)
-
----
-
-## About PixTui
+## About
 
 PixTui is a Go library for creating terminal applications with rich layouts, interactive components, and reactive programming. Inspired by modern UI frameworks, PixTui brings a component-based approach to terminal UI development.
 
-Whether you're building a CLI dashboard, a text editor, or a full-screen terminal application, PixTui provides the building blocks you need.
-
----
+Whether you are building a CLI dashboard, a text editor, or a full-screen terminal application, PixTui provides the building blocks you need.
 
 ## Features
 
@@ -46,8 +26,6 @@ Whether you're building a CLI dashboard, a text editor, or a full-screen termina
 - **Plugin system** — Extensible plugin architecture
 - **Web server** — Built-in HTTP documentation server
 - **122 examples** — Ready-to-run example applications
-
----
 
 ## Installation
 
@@ -68,8 +46,6 @@ git clone https://github.com/Gomobra/PixTui.git
 cd PixTui
 go build ./...
 ```
-
----
 
 ## Quick Start
 
@@ -102,8 +78,6 @@ Run it:
 go run main.go
 ```
 
----
-
 ## Examples
 
 PixTui includes 122 example applications covering all major features:
@@ -127,36 +101,22 @@ go run ./cmd/pixtui-demo/ 3d
 go run ./cmd/pixtui-demo/ ssh
 ```
 
----
-
 ## Packages
 
-| Package | Description |
-|---------|-------------|
-| `native` | Terminal, buffer, image, video, audio, tree-sitter, yoga layout |
-| `core` | Renderable system, layout, edit buffer, editor view |
-| `react` | React-style hooks and JSX |
-| `solid` | Solid-style signals and components |
-| `ssh` | SSH server |
-| `three` | 3D renderer |
-| `web` | HTTP documentation server |
-| `keymap` | Key binding engine |
-| `animation` | Animation and timeline |
-| `plugin` | Plugin system |
-| `qrcode` | QR code encoder |
-| `examples` | 122 example applications |
+PixTui is organized into the following packages:
 
----
-
-## Roadmap
-
-- [ ] Add more renderable components
-- [ ] WebGPU shader support
-- [ ] Mobile terminal support
-- [ ] Plugin marketplace
-- [ ] VS Code extension
-
----
+- **native** — Terminal, buffer, image, video, audio, tree-sitter, yoga layout
+- **core** — Renderable system, layout, edit buffer, editor view
+- **react** — React-style hooks and JSX
+- **solid** — Solid-style signals and components
+- **ssh** — SSH server
+- **three** — 3D renderer
+- **web** — HTTP documentation server
+- **keymap** — Key binding engine
+- **animation** — Animation and timeline
+- **plugin** — Plugin system
+- **qrcode** — QR code encoder
+- **examples** — 122 example applications
 
 ## Contributing
 
@@ -170,21 +130,15 @@ If you have a suggestion that would make this better, please fork the repo and c
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
----
-
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
----
 
 ## Contact
 
 Gomobra — [@Gomobra](https://github.com/Gomobra)
 
 Project Link: [https://github.com/Gomobra/PixTui](https://github.com/Gomobra/PixTui)
-
----
 
 ## Acknowledgments
 
