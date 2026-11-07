@@ -5,8 +5,9 @@
 [![Go](https://img.shields.io/badge/Go-1.26+-00ADD8?logo=go&logoColor=white)](https://go.dev/)
 [![CI](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml/badge.svg)](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml)
 [![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Gomobra/PixTui)](https://goreportcard.com/report/github.com/Gomobra/PixTui)
 
-**PixTui is a Go library for building terminal user interfaces (TUI).** It provides a component-based rendering model, Yoga-powered layout, interactive terminal widgets, and supporting packages for building full-screen command-line applications.
+**PixTui is a Go library for building beautiful terminal user interfaces (TUI).** Build full-screen CLI apps with rich layouts, interactive components, and reactive programming — all in Go.
 
 > The public API and feature coverage may evolve. Check the source and package APIs before relying on a feature in production.
 
@@ -196,16 +197,18 @@ Contributions, bug reports, and feature suggestions are welcome.
 4. Run `go build ./...`, `go test ./...`, and `go vet ./...`.
 5. Open a pull request with a clear description of the change.
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
 ## Donate
 
 If you find PixTui useful, consider supporting the project:
 
-- **Bitcoin (BTC):** `bc1qegkxu0cp2r83hne8642afst90l68du05datn3x`
-- **TON:** `UQCslWQYJEiaLlw4-Zl3qI4fYL0G0xV6KtIfTel-4pz11Ygt`
+| Network | Address |
+|---------|---------|
+| ![Bitcoin](https://img.shields.io/badge/Bitcoin-BTC-orange?logo=bitcoin&logoColor=white) | `bc1qegkxu0cp2r83hne8642afst90l68du05datn3x` |
+| ![TON](https://img.shields.io/badge/TON-Network-0098EA?logo=ton&logoColor=white) | `UQCslWQYJEiaLlw4-Zl3qI4fYL0G0xV6KtIfTel-4pz11Ygt` |
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
