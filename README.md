@@ -4,6 +4,7 @@
 
 [![Go](https://img.shields.io/badge/Go-1.26+-00ADD8?logo=go&logoColor=white)](https://go.dev/)
 [![CI](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml/badge.svg)](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **PixTui is a Go library for building terminal user interfaces (TUI).** It provides a component-based rendering model, Yoga-powered layout, interactive terminal widgets, and supporting packages for building full-screen command-line applications.
 
@@ -44,6 +45,7 @@ The renderables package includes components such as:
 | `FrameBuffer` | Framebuffer-backed content |
 | `LineNumber` | Line-number display |
 | `ScrollBar` | Scroll position indicator |
+| `TextNode` | Text node |
 
 This list is illustrative rather than a promise that every component has identical interaction or API coverage. Refer to `packages/core/renderables` for the current implementation.
 
