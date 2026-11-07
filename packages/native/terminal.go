@@ -5,8 +5,6 @@ import (
 	"os"
 	"os/signal"
 	"sync"
-	"syscall"
-	"unsafe"
 
 	"golang.org/x/term"
 )
@@ -59,22 +57,6 @@ func NewTerminal() *Terminal {
 	}
 
 	return t
-}
-
-// getTermSize gets terminal dimensions using ioctl TIOCGWINSZ
-func (t *Terminal) getTermSize() (int, int) {
-	var dims [4]uint16
-	_, _, errno := syscall.Syscall6(
-		syscall.SYS_IOCTL,
-		t.stdoutFd,
-		syscall.TIOCGWINSZ,
-		uintptr(unsafe.Pointer(&dims[0])),
-		0, 0, 0,
-	)
-	if errno != 0 {
-		return 0, 0
-	}
-	return int(dims[1]), int(dims[0]) // cols, rows
 }
 
 // IsSupported returns true if the terminal is supported.
@@ -209,39 +191,6 @@ type ResizeEvent struct {
 	Height int
 }
 
-// WatchResize watches for terminal resize events using the SIGWINCH signal.
-// When the terminal is resized, the callback is invoked with the new dimensions.
-// This replaces the previous polling loop with a signal-based approach using
-// os.Signal and syscall.SIGWINCH.
-func (t *Terminal) WatchResize(callback func(ResizeEvent)) {
-	// Stop any previous resize watcher before starting a new one.
-	t.StopResizeWatch()
-
-	// Recreate the stop/done channels for this watch session.
-	t.stopResize = make(chan struct{})
-	t.resizeDone = make(chan struct{})
-
-	sigCh := make(chan os.Signal, 1)
-	signal.Notify(sigCh, syscall.SIGWINCH)
-	t.resizeSignal = sigCh
-
-	go func() {
-		defer close(t.resizeDone)
-		for {
-			select {
-			case <-t.stopResize:
-				signal.Stop(sigCh)
-				return
-			case <-sigCh:
-				w, h := t.getTermSize()
-				if w > 0 && h > 0 {
-					t.SetDimensions(w, h)
-					callback(ResizeEvent{Width: w, Height: h})
-				}
-			}
-		}
-	}()
-}
 
 // StopResizeWatch stops the WatchResize goroutine and unregisters the SIGWINCH
 // signal handler. It is safe to call multiple times and from Close().

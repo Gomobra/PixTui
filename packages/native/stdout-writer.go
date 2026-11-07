@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"os"
 	"sync/atomic"
-	"syscall"
 	"time"
-	"unsafe"
 )
 
 const (
@@ -59,23 +57,6 @@ type Sink interface {
 // FdSink writes to a file descriptor using raw write(2).
 type FdSink struct {
 	fd uintptr
-}
-
-// Write writes bytes to the fd using raw write(2).
-func (s FdSink) Write(p []byte) (int, SinkError) {
-	ptr := unsafe.Pointer(unsafe.SliceData(p))
-	n, _, errno := syscall.Syscall(syscall.SYS_WRITE, s.fd, uintptr(ptr), uintptr(len(p)))
-	if errno != 0 {
-		switch errno {
-		case syscall.EINTR:
-			return 0, SinkInterrupted
-		case syscall.EAGAIN:
-			return 0, SinkWouldBlock
-		default:
-			return 0, SinkFailed
-		}
-	}
-	return int(n), 0
 }
 
 // WaitWritable waits for the fd to become writable.
