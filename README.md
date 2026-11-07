@@ -1,5 +1,7 @@
 # PixTui
 
+![PixTui Banner](assets/pixtui-banner.png)
+
 [![Go](https://img.shields.io/badge/Go-1.26+-00ADD8?logo=go&logoColor=white)](https://go.dev/)
 [![CI](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml/badge.svg)](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml)
 
