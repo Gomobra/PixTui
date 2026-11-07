@@ -4,7 +4,8 @@ package native
 // Provides tree-sitter parser/wrapper for Code renderable syntax highlighting.
 // Mirrors packages/native/src/tree-sitter.zig from the original repo.
 
-// #cgo LDFLAGS: -ltree-sitter
+// #cgo CFLAGS: -I/data/data/com.termux/files/usr/include
+// #cgo LDFLAGS: -L/data/data/com.termux/files/usr/lib -ltree-sitter
 // #include <tree_sitter/api.h>
 import "C"
 import (
