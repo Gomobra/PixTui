@@ -161,7 +161,7 @@ go test ./...
 go vet ./...
 ```
 
-The GitHub Actions workflow runs build, vet, and test checks with Go 1.26 on Ubuntu, Windows, and macOS. See the [CI workflow](.github/workflows/ci.yml) for the exact matrix and commands.
+Run `go build ./...`, `go test ./...`, and `go vet ./...` to verify.
 
 ## Repository layout
 
@@ -220,4 +220,3 @@ Project Link: [https://github.com/Gomobra/PixTui](https://github.com/Gomobra/Pix
 
 - [Repository](https://github.com/Gomobra/PixTui)
 - [Issues](https://github.com/Gomobra/PixTui/issues)
-- [CI workflow](https://github.com/Gomobra/PixTui/actions/workflows/ci.yml)
