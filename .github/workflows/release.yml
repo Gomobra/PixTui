@@ -36,7 +36,7 @@ jobs:
             artifact: pixtui-demo-windows-amd64.exe
           - goos: darwin
             goarch: amd64
-            runner: macos-13
+            runner: macos-latest
             artifact: pixtui-demo-darwin-amd64
           - goos: darwin
             goarch: arm64
