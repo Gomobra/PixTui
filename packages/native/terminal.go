@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"runtime"
 	"sync"
 
 	"golang.org/x/term"
@@ -210,7 +211,7 @@ func (t *Terminal) StopResizeWatch() {
 	if resizeDone != nil {
 		<-resizeDone
 	}
-	if resizeSignal != nil {
+	if resizeSignal != nil && runtime.GOOS != "windows" {
 		signal.Stop(resizeSignal)
 	}
 }
