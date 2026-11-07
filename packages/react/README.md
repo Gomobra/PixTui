@@ -4,7 +4,7 @@ React bindings for OpenTUI Go
 ## Installation
 
 ```sh
-go get opentui-go/packages/react
+go get PixTui/packages/react
 ```
 
 ## Usage
@@ -13,8 +13,8 @@ go get opentui-go/packages/react
 package main
 
 import (
-	"opentui-go/packages/react"
-	"opentui-go/packages/react/src/components"
+	"PixTui/packages/react"
+	"PixTui/packages/react/src/components"
 )
 
 func main() {

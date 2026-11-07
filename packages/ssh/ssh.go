@@ -82,7 +82,7 @@ type Server struct {
 // Use Use() to add middleware and Listen() to start accepting connections.
 func NewServer(addr string, handler SessionHandler) *Server {
 	config := &ssh.ServerConfig{
-		ServerVersion: "SSH-2.0-opentui-go",
+		ServerVersion: "SSH-2.0-pixtui",
 	}
 	return &Server{
 		addr:               addr,

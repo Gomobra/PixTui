@@ -4,7 +4,7 @@ SSH server integration for OpenTUI Go
 ## Installation
 
 ```sh
-go get opentui-go/packages/ssh
+go get PixTui/packages/ssh
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ go get opentui-go/packages/ssh
 package main
 
 import (
-	"opentui-go/packages/ssh"
+	"PixTui/packages/ssh"
 )
 
 func main() {

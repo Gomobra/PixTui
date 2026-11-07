@@ -5259,7 +5259,7 @@ func runWebServer() error {
 	site.AddPage(web.NewPage("/about", "Tentang",
 		"<h1>Tentang OpenTUI</h1><p>OpenTUI adalah terminal user interface framework yang ditulis dalam Go.</p>"))
 	site.AddPage(web.NewPage("/api/status", "Status API",
-		`{"status":"ok","service":"opentui-go","version":"1.0.0"}`))
+		`{"status":"ok","service":"pixtui","version":"1.0.0"}`))
 
 	// Verify site contents.
 	pages := site.ListPages()
@@ -7735,7 +7735,7 @@ func runTerminal() error {
 
 	// Write some VT output to the terminal.
 	terminal.Write([]byte("$ hello \x1b[1;32mworld\x1b[0m\r\n"))
-	terminal.Write([]byte("$ opentui-go terminal demo\r\n"))
+	terminal.Write([]byte("$ pixtui terminal demo\r\n"))
 	terminal.Write([]byte("$ Press q to quit.\r\n"))
 
 	terminal.SetPosition(2, 2)
@@ -9793,7 +9793,7 @@ func runEmbeddedTerminalDemo() error {
 	})
 
 	// Write VT output to the embedded terminal.
-	terminal.Write([]byte("$ opentui-go embedded terminal\r\n"))
+	terminal.Write([]byte("$ pixtui embedded terminal\r\n"))
 	terminal.Write([]byte("$ welcome to OpenTUI Go\r\n"))
 	terminal.Write([]byte("$ \x1b[1;32msystem ready\x1b[0m\r\n"))
 	terminal.Write([]byte("$ \x1b[1;31merror\x1b[0m: connection timeout\r\n"))

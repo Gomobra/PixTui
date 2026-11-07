@@ -1561,7 +1561,7 @@ func Serve(addr string) error {
 		w.Header().Set("Content-Type", "application/json")
 		_ = json.NewEncoder(w).Encode(map[string]any{
 			"status":  "ok",
-			"service": "opentui-go-web",
+			"service": "pixtui-web",
 			"pages":   site.PageCount(),
 			"apiDocs": site.APIDocCount(),
 			"releases": site.ReleaseNoteCount(),
@@ -1595,7 +1595,7 @@ func Serve(addr string) error {
 		w.Header().Set("Content-Type", "application/json")
 		_ = json.NewEncoder(w).Encode(map[string]any{
 			"status":    "ok",
-			"service":   "opentui-go-web",
+			"service":   "pixtui-web",
 			"version":   "1.0.0",
 			"pages":     summaries,
 			"pageCount": len(summaries),
@@ -1625,7 +1625,7 @@ func Serve(addr string) error {
 		w.Header().Set("Content-Type", "application/json")
 		status := map[string]string{
 			"status":  "ok",
-			"service": "opentui-go",
+			"service": "pixtui",
 			"version": "1.0.0",
 			"pages":   fmt.Sprintf("%d", site.PageCount()),
 		}

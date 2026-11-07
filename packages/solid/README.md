@@ -4,7 +4,7 @@ Solid bindings for OpenTUI Go
 ## Installation
 
 ```sh
-go get opentui-go/packages/solid
+go get PixTui/packages/solid
 ```
 
 ## Usage
@@ -13,8 +13,8 @@ go get opentui-go/packages/solid
 package main
 
 import (
-	"opentui-go/packages/solid"
-	"opentui-go/packages/solid/src/components"
+	"PixTui/packages/solid"
+	"PixTui/packages/solid/src/components"
 )
 
 func main() {

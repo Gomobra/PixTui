@@ -4,7 +4,7 @@ Example applications for OpenTUI Go
 ## Installation
 
 ```sh
-go get opentui-go/packages/examples
+go get PixTui/packages/examples
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ go get opentui-go/packages/examples
 package main
 
 import (
-	"opentui-go/packages/examples"
+	"PixTui/packages/examples"
 )
 
 func main() {

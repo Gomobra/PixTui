@@ -4,7 +4,7 @@ Three.js WebGPU renderer for OpenTUI Go
 ## Installation
 
 ```sh
-go get opentui-go/packages/three
+go get PixTui/packages/three
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ go get opentui-go/packages/three
 package main
 
 import (
-	"opentui-go/packages/three"
+	"PixTui/packages/three"
 )
 
 func main() {

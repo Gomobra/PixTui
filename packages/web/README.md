@@ -4,7 +4,7 @@ Documentation website for OpenTUI Go
 ## Installation
 
 ```sh
-go get opentui-go/packages/web
+go get PixTui/packages/web
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ go get opentui-go/packages/web
 package main
 
 import (
-	"opentui-go/packages/web"
+	"PixTui/packages/web"
 )
 
 func main() {
