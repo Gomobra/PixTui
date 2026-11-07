@@ -28,6 +28,10 @@ jobs:
           go-version: ${{ matrix.go-version }}
           cache: true
 
+      - name: Install tree-sitter (Ubuntu)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libtree-sitter-dev
+
       - name: Download modules
         run: go mod download
 
