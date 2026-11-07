@@ -201,10 +201,10 @@ Contributions, bug reports, and feature suggestions are welcome.
 
 If you find PixTui useful, consider supporting the project:
 
-| Network | Address |
-|---------|---------|
-| ![Bitcoin](https://img.shields.io/badge/Bitcoin-BTC-orange?logo=bitcoin&logoColor=white) | `bc1qegkxu0cp2r83hne8642afst90l68du05datn3x` |
-| ![TON](https://img.shields.io/badge/TON-Network-0098EA?logo=ton&logoColor=white) | `UQCslWQYJEiaLlw4-Zl3qI4fYL0G0xV6KtIfTel-4pz11Ygt` |
+| Network | Address | QR Code |
+|---------|---------|---------|
+| ![Bitcoin](https://img.shields.io/badge/Bitcoin-BTC-orange?logo=bitcoin&logoColor=white) | `bc1qegkxu0cp2r83hne8642afst90l68du05datn3x` | ![BTC QR](assets/qr-btc.png) |
+| ![TON](https://img.shields.io/badge/TON-Network-0098EA?logo=ton&logoColor=white) | `UQCslWQYJEiaLlw4-Zl3qI4fYL0G0xV6KtIfTel-4pz11Ygt` | ![TON QR](assets/qr-ton.png) |
 
 ## License
 

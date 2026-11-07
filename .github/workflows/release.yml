@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.1)'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -54,7 +60,7 @@ jobs:
           GOOS: ${{ matrix.goos }}
           GOARCH: ${{ matrix.goarch }}
           CGO_ENABLED: '1'
-        run: go build -o ${{ matrix.artifact }} ./cmd/pixtui-demo/
+        run: go build -ldflags="-s -w" -o ${{ matrix.artifact }} ./cmd/pixtui-demo/
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -67,14 +73,54 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           path: dist
           merge-multiple: true
 
+      - name: Generate checksums
+        run: |
+          cd dist
+          sha256sum * > checksums.txt
+          cat checksums.txt
+
+      - name: Create Source Archive
+        run: |
+          git archive --format=tar.gz --prefix=PixTui/ -o dist/PixTui-source.tar.gz HEAD
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
+          files: |
+            dist/*
           generate_release_notes: true
+          body: |
+            ## PixTui Release
+
+            ### Downloads
+            - **Linux (amd64)**: pixtui-demo-linux-amd64
+            - **Linux (arm64)**: pixtui-demo-linux-arm64
+            - **Windows (amd64)**: pixtui-demo-windows-amd64.exe
+            - **macOS (amd64)**: pixtui-demo-darwin-amd64
+            - **macOS (arm64)**: pixtui-demo-darwin-arm64
+            - **Source Code**: PixTui-source.tar.gz
+            - **Checksums**: checksums.txt
+
+            ### Installation
+            ```bash
+            go get github.com/Gomobra/PixTui
+            ```
+
+            ### Verify checksums
+            ```bash
+            sha256sum -c checksums.txt
+            ```
+
+            ### Support
+            If you find PixTui useful, consider donating:
+            - **Bitcoin**: bc1qegkxu0cp2r83hne8642afst90l68du05datn3x
+            - **TON**: UQCslWQYJEiaLlw4-Zl3qI4fYL0G0xV6KtIfTel-4pz11Ygt
