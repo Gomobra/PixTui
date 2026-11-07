@@ -1,5 +1,5 @@
-# @opentui/solid
-Solid bindings for OpenTUI Go
+# @pixtui/solid
+Solid bindings for PixTui
 
 ## Installation
 

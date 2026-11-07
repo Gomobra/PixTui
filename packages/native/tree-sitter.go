@@ -1,6 +1,6 @@
 package native
 
-// Tree-sitter syntax highlighting integration for OpenTUI Go.
+// Tree-sitter syntax highlighting integration for PixTui.
 // Provides tree-sitter parser/wrapper for Code renderable syntax highlighting.
 // Mirrors packages/native/src/tree-sitter.zig from the original repo.
 

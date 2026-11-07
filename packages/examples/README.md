@@ -1,5 +1,5 @@
-# @opentui/examples
-Example applications for OpenTUI Go
+# @pixtui/examples
+Example applications for PixTui
 
 ## Installation
 

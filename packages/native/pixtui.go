@@ -5,13 +5,13 @@ import (
 	"io"
 )
 
-// opentui is the core module aggregating the main public API of the native
-// package. It mirrors the Zig opentui.zig which aggregates and re-exports
+// pixtui is the core module aggregating the main public API of the native
+// package. It mirrors the Zig pixtui.zig which aggregates and re-exports
 // the primary types and constructors for native integration.
 //
 // In Go all types live in the same `native` package, so no type aliasing is
 // needed. This file provides a compile-time verification that the public
-// API surface expected by opentui.zig is present.
+// API surface expected by pixtui.zig is present.
 
 // Compile-time check that all expected constructors and symbols exist.
 // These reference the functions defined in their respective files.

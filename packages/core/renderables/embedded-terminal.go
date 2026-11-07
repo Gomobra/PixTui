@@ -18,7 +18,7 @@ type EmbeddedTerminalOptions struct {
 
 // EmbeddedTerminalRenderable renders an embedded terminal's output buffer
 // into the parent buffer. It wraps a native.EmbeddedTerminal and mirrors the
-// TypeScript EmbeddedTerminal renderable from opentui-repo.
+// TypeScript EmbeddedTerminal renderable from pixtui-repo.
 type EmbeddedTerminalRenderable struct {
 	*core.Renderable
 	terminal *native.EmbeddedTerminal

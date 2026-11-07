@@ -1,5 +1,5 @@
-# @opentui/three
-Three.js WebGPU renderer for OpenTUI Go
+# @pixtui/three
+Three.js WebGPU renderer for PixTui
 
 ## Installation
 

@@ -218,7 +218,7 @@ func CreateMemo(memo func() interface{}) interface{} {
 var solidComponentRegistry = make(map[string]func(props map[string]interface{}) SolidComponent)
 
 // RegisterComponent registers a component function under a name, mirroring the
-// @opentui/solid extend() API used by framework packages like @opentui/qrcode.
+// @pixtui/solid extend() API used by framework packages like @pixtui/qrcode.
 func RegisterComponent(name string, fn func(props map[string]interface{}) SolidComponent) {
 	solidComponentRegistry[name] = fn
 }

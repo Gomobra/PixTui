@@ -45,7 +45,7 @@ type SessionHandler func(session *Session) error
 // returns runs as teardown for that link.
 type Middleware func(session *Session, next func() error) error
 
-// Server is an SSH server that serves OpenTUI applications over SSH.
+// Server is an SSH server that serves PixTui applications over SSH.
 type Server struct {
 	addr        string
 	handler     SessionHandler
@@ -500,7 +500,7 @@ func (s *Server) removeSession(session *Session) {
 	s.mu.Unlock()
 }
 
-// Session represents an SSH session tied to an OpenTUI application.
+// Session represents an SSH session tied to an PixTui application.
 type Session struct {
 	id         string
 	conn       *ssh.ServerConn
@@ -964,13 +964,13 @@ func annotatePermissions(perm *ssh.Permissions, method, username, fingerprint st
 	if perm.Extensions == nil {
 		perm.Extensions = make(map[string]string)
 	}
-	perm.Extensions["opentui.method"] = method
-	perm.Extensions["opentui.username"] = username
+	perm.Extensions["pixtui.method"] = method
+	perm.Extensions["pixtui.username"] = username
 	if fingerprint != "" {
-		perm.Extensions["opentui.fingerprint"] = fingerprint
+		perm.Extensions["pixtui.fingerprint"] = fingerprint
 	}
 	if pubKey != nil {
-		perm.Extensions["opentui.publickey"] = string(pubKey)
+		perm.Extensions["pixtui.publickey"] = string(pubKey)
 	}
 	return perm
 }
@@ -981,11 +981,11 @@ func identityFromConn(sshConn *ssh.ServerConn, noAuth bool) Identity {
 		Username: sshConn.User(),
 	}
 	if perm := sshConn.Permissions; perm != nil {
-		if method := perm.Extensions["opentui.method"]; method != "" {
+		if method := perm.Extensions["pixtui.method"]; method != "" {
 			id.Method = method
-			id.Username = perm.Extensions["opentui.username"]
-			id.Fingerprint = perm.Extensions["opentui.fingerprint"]
-			if pk := perm.Extensions["opentui.publickey"]; pk != "" {
+			id.Username = perm.Extensions["pixtui.username"]
+			id.Fingerprint = perm.Extensions["pixtui.fingerprint"]
+			if pk := perm.Extensions["pixtui.publickey"]; pk != "" {
 				if key, err := ssh.ParsePublicKey([]byte(pk)); err == nil {
 					id.PublicKey = key
 				}

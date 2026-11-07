@@ -245,7 +245,7 @@ func (t *Transport) createLeaseLocked(id uint32, image *Image, directory string)
 	if _, err := rand.Read(random); err != nil {
 		return nil, err
 	}
-	path := filepath.Join(directory, fmt.Sprintf("opentui-kitty-%s", hex.EncodeToString(random)))
+	path := filepath.Join(directory, fmt.Sprintf("pixtui-kitty-%s", hex.EncodeToString(random)))
 	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0o600)
 	if err != nil {
 		return nil, err

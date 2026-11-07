@@ -17,7 +17,7 @@ import (
 type SiteConfig struct {
 	// Title is the site title shown in HTML <title> tags and the OpenAPI info.
 	Title string
-	// BaseURL is the public base URL of the site (e.g. "https://opentui.com").
+	// BaseURL is the public base URL of the site (e.g. "https://pixtui.com").
 	BaseURL string
 	// OutputDir is the directory static site generation writes HTML files to.
 	OutputDir string
@@ -30,7 +30,7 @@ type SiteConfig struct {
 // defaultSiteConfig returns a sensible default configuration.
 func defaultSiteConfig() SiteConfig {
 	return SiteConfig{
-		Title:        "OpenTUI Go Documentation",
+		Title:        "PixTui Documentation",
 		BaseURL:      "",
 		OutputDir:    "_site",
 		TrailingSlash: true,

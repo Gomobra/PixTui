@@ -35,7 +35,7 @@ func boolPtr(b bool) *bool   { return &b }
 func intPtr(i int) *int      { return &i }
 func float64Ptr(f float64) *float64 { return &f }
 
-// Example applications for OpenTUI Go
+// Example applications for PixTui
 // Mirrors packages/examples/ in the original TypeScript repo.
 // Every example is headless-safe: it renders a single frame even when no
 // TTY is available, and only enters the interactive render loop when a real
@@ -269,8 +269,8 @@ func RunExample(name string) error {
 		return runFontsDemo()
 	case "embedded-terminal-demo":
 		return runEmbeddedTerminalDemo()
-	case "opentui-demo":
-		return runOpenTUIDemo()
+	case "pixtui-demo":
+		return runPixTuiDemo()
 	case "audio-streaming-demo":
 		return runAudioStreamingDemo()
 	case "draggable-three-demo":
@@ -408,7 +408,7 @@ func runHello() error {
 			Height: strPtr("8"),
 			Visible: boolPtr(true),
 		},
-		Content: "Hello, OpenTUI Go!\n\nThis is the hello example.\nPress q to quit.",
+		Content: "Hello, PixTui!\n\nThis is the hello example.\nPress q to quit.",
 	})
 
 	box.AddChild(text.Renderable)
@@ -511,7 +511,7 @@ func runText() error {
 		Title:  "Text Renderable",
 	})
 
-	content := `OpenTUI Go Text Renderable
+	content := `PixTui Text Renderable
 
 This example demonstrates the Text renderable component.
 It renders plain text content into a buffer, handling
@@ -1143,7 +1143,7 @@ func runMarkdown() error {
 			Height: strPtr("12"),
 			Visible: boolPtr(true),
 		},
-		Content: "# OpenTUI Go\n\n## Markdown Renderable\n\nThis demonstrates the markdown component.\n\n- Item one\n- Item two\n- Item three\n",
+		Content: "# PixTui\n\n## Markdown Renderable\n\nThis demonstrates the markdown component.\n\n- Item one\n- Item two\n- Item three\n",
 	})
 	markdown.SetPosition(1, 1)
 
@@ -1528,9 +1528,9 @@ func run3D() error {
 // ---------------------------------------------------------------------------
 
 func runSSH() error {
-	// Create an SSH server that serves an OpenTUI welcome screen.
+	// Create an SSH server that serves an PixTui welcome screen.
 	server := ssh.NewServer("127.0.0.1:0", func(session *ssh.Session) error {
-		session.Write([]byte("\r\nWelcome to OpenTUI over SSH\r\n"))
+		session.Write([]byte("\r\nWelcome to PixTui over SSH\r\n"))
 		session.Write([]byte("This session is served by the Go SSH package.\r\n"))
 		session.Write([]byte("Press q to quit.\r\n\r\n"))
 		return nil
@@ -1590,7 +1590,7 @@ func runSSH() error {
 	}
 
 	output := string(data)
-	if !strings.Contains(output, "Welcome to OpenTUI over SSH") {
+	if !strings.Contains(output, "Welcome to PixTui over SSH") {
 		return fmt.Errorf("expected SSH welcome message, got: %q", output)
 	}
 
@@ -1810,7 +1810,7 @@ func runFullDemo() error {
 		Border:          true,
 		BorderColor: hexPtr("#FFFFFF"),
 		ShouldFill:      false,
-		Title:           "OpenTUI Go - Full Demo",
+		Title:           "PixTui - Full Demo",
 		TitleAlignment:  "left",
 		Focusable:       true,
 	})
@@ -1822,7 +1822,7 @@ func runFullDemo() error {
 			Height: strPtr("1"),
 			Visible: boolPtr(true),
 		},
-		Content: "Welcome to OpenTUI Go - all components in one view",
+		Content: "Welcome to PixTui - all components in one view",
 	})
 	title.SetPosition(1, 1)
 
@@ -2261,7 +2261,7 @@ func runExtmarks() error {
 	buf := core.NewNativeBuffer(56, 10)
 
 	lines := []string{
-		"OpenTUI Extmark Demo",
+		"PixTui Extmark Demo",
 		"Highlight ranges with different colors.",
 		"Error: something went wrong here.",
 	}
@@ -2275,7 +2275,7 @@ func runExtmarks() error {
 
 	manager := core.NewExtmarkManager()
 
-	// White text on red background for "OpenTUI" (line 0, col 0-7).
+	// White text on red background for "PixTui" (line 0, col 0-7).
 	manager.Add(&core.Extmark{
 		Type:      core.ExtmarkTypeHighlight,
 		StartLine: 0, StartCol: 0, EndLine: 0, EndCol: 7,
@@ -2626,7 +2626,7 @@ func runQrcodeLarge() error {
 	}
 	rendered := qr.Render()
 
-	qrSmall, _ := qrcode.NewQRCode("OpenTUI Go", qrcode.LevelL)
+	qrSmall, _ := qrcode.NewQRCode("PixTui", qrcode.LevelL)
 	renderedSmall := qrSmall.Render()
 
 	box := renderables.NewBoxRenderable(ctx, renderables.BoxOptions{
@@ -2994,7 +2994,7 @@ func runFullStyled() error {
 		Border:          true,
 		BorderColor: hexPtr("#FF6464"),
 		ShouldFill:      true,
-		Title:           "OpenTUI Go - Full Styled",
+		Title:           "PixTui - Full Styled",
 		TitleAlignment:  "center",
 		Focusable:       true,
 	})
@@ -3322,7 +3322,7 @@ func runTextBuffer() error {
 	ctx := renderer.Context()
 	root := core.NewRootRenderable(ctx, "root")
 
-	tb := native.NewTextBufferWithContent(`OpenTUI text buffer
+	tb := native.NewTextBufferWithContent(`PixTui text buffer
 Rope-backed storage
 `)
 
@@ -3795,7 +3795,7 @@ func runFullStyled2() error {
 		Border:          true,
 		BorderColor: hexPtr("#FF6464"),
 		ShouldFill:      true,
-		Title:           "OpenTUI Go - Full Styled 2",
+		Title:           "PixTui - Full Styled 2",
 		TitleAlignment:  "center",
 		Focusable:       true,
 	})
@@ -5026,10 +5026,10 @@ func runSSHFull() error {
 		return next()
 	}
 
-	// Server handler that serves an OpenTUI screen over SSH using WriteFrame.
+	// Server handler that serves an PixTui screen over SSH using WriteFrame.
 	server := ssh.NewServer("127.0.0.1:0", func(session *ssh.Session) error {
 		handlerRuns++
-	session.Write([]byte("\r\nWelcome to OpenTUI over SSH\r\n"))
+	session.Write([]byte("\r\nWelcome to PixTui over SSH\r\n"))
 	session.Write([]byte("This session is served with middleware and WriteFrame.\r\n"))
 	session.Write([]byte("Press q to quit.\r\n\r\n"))
 
@@ -5123,7 +5123,7 @@ func runSSHFull() error {
 	}
 
 	output := string(data)
-	if !strings.Contains(output, "Welcome to OpenTUI over SSH") {
+	if !strings.Contains(output, "Welcome to PixTui over SSH") {
 		return fmt.Errorf("expected SSH welcome message, got: %q", output)
 	}
 
@@ -5246,18 +5246,18 @@ func runWebServer() error {
 	root := core.NewRootRenderable(ctx, "root")
 
 	// Create a documentation site with multiple pages.
-	site := web.NewSite("OpenTUI Go Documentation")
+	site := web.NewSite("PixTui Documentation")
 
 	site.AddPage(web.NewPage("/", "Beranda",
-		"<h1>OpenTUI Go</h1><p>Selamat datang dalam dokumentasi OpenTUI Go.</p>"))
+		"<h1>PixTui</h1><p>Selamat datang dalam dokumentasi PixTui.</p>"))
 	site.AddPage(web.NewPage("/docs", "Dokumentasi",
-		"<h1>Dokumentasi OpenTUI Go</h1><p>Halaman dokumentasi resmi OpenTUI Go.</p>"))
+		"<h1>Dokumentasi PixTui</h1><p>Halaman dokumentasi resmi PixTui.</p>"))
 	site.AddPage(web.NewPage("/docs/getting-started", "Getting Started",
-		"<h1>Getting Started</h1><p>Panduan pemula untuk OpenTUI Go.</p>"))
+		"<h1>Getting Started</h1><p>Panduan pemula untuk PixTui.</p>"))
 	site.AddPage(web.NewPage("/docs/components", "Components",
-		"<h1>Components</h1><p>Daftar semua komponen OpenTUI Go.</p>"))
+		"<h1>Components</h1><p>Daftar semua komponen PixTui.</p>"))
 	site.AddPage(web.NewPage("/about", "Tentang",
-		"<h1>Tentang OpenTUI</h1><p>OpenTUI adalah terminal user interface framework yang ditulis dalam Go.</p>"))
+		"<h1>Tentang PixTui</h1><p>PixTui adalah terminal user interface framework yang ditulis dalam Go.</p>"))
 	site.AddPage(web.NewPage("/api/status", "Status API",
 		`{"status":"ok","service":"pixtui","version":"1.0.0"}`))
 
@@ -5535,7 +5535,7 @@ func runExtmarksHighlight() error {
 	buf := core.NewNativeBuffer(56, 10)
 
 	lines := []string{
-		"OpenTUI Extmark Highlight Demo",
+		"PixTui Extmark Highlight Demo",
 		"Selection: highlighted text range here.",
 		"Error: diagnostic error message here.",
 		"Custom: user-defined annotation mark.",
@@ -5894,7 +5894,7 @@ func runStyledTextDemo() error {
 			Height: strPtr("8"),
 			Visible: boolPtr(true),
 		},
-		Content: "Styled Text Demo\nESC to return\n\nFeatures:\n• Bold, underlined, colors\n• Background colors\n• Custom hex colors\n• Hyperlinks: https://opentui.com",
+		Content: "Styled Text Demo\nESC to return\n\nFeatures:\n• Bold, underlined, colors\n• Background colors\n• Custom hex colors\n• Hyperlinks: https://pixtui.com",
 	})
 	instr.SetPosition(2, 16)
 
@@ -6195,7 +6195,7 @@ func runTextWrapDemo() error {
 			Height: strPtr("14"),
 			Visible: boolPtr(true),
 		},
-		Content: "🎨 OpenTUI Text Wrapping Demo\n\nWelcome to the text wrapping demonstration. This example showcases how OpenTUI handles automatic text wrapping with styled content.\n\n✨ Key Features:\n• Word-based wrapping - Preserves word boundaries when breaking lines\n• Character-based wrapping - Breaks at any character for precise control\n• Dynamic resizing - Text reflows automatically as container dimensions change\n• Rich styling - Individual text segments can have different colors and attributes\n\n🔧 How It Works:\nTextNodes are created with specific styling and then composed together to form rich, formatted text content. Each node can contain different foreground colors, background colors, and text attributes like bold, italic, and underline.\n\n💻 Example Code:\nconst styledText = TextNodeRenderable.fromNodes([\n  TextNodeRenderable.fromString(\"Hello \", { fg: \"#9ece6a\" }),\n  TextNodeRenderable.fromString(\"World\", { fg: \"#7aa2f7\", attributes: 1 }),\n  TextNodeRenderable.fromString(\"!\", { fg: \"#f7768e\" })\n]);\n\n🎮 Try It Out:\nDrag the borders or corners of this text box to resize it and watch how the text wrapping adapts in real-time.",
+		Content: "🎨 PixTui Text Wrapping Demo\n\nWelcome to the text wrapping demonstration. This example showcases how PixTui handles automatic text wrapping with styled content.\n\n✨ Key Features:\n• Word-based wrapping - Preserves word boundaries when breaking lines\n• Character-based wrapping - Breaks at any character for precise control\n• Dynamic resizing - Text reflows automatically as container dimensions change\n• Rich styling - Individual text segments can have different colors and attributes\n\n🔧 How It Works:\nTextNodes are created with specific styling and then composed together to form rich, formatted text content. Each node can contain different foreground colors, background colors, and text attributes like bold, italic, and underline.\n\n💻 Example Code:\nconst styledText = TextNodeRenderable.fromNodes([\n  TextNodeRenderable.fromString(\"Hello \", { fg: \"#9ece6a\" }),\n  TextNodeRenderable.fromString(\"World\", { fg: \"#7aa2f7\", attributes: 1 }),\n  TextNodeRenderable.fromString(\"!\", { fg: \"#f7768e\" })\n]);\n\n🎮 Try It Out:\nDrag the borders or corners of this text box to resize it and watch how the text wrapping adapts in real-time.",
 		Wrap:   true,
 	})
 	content.SetPosition(1, 1)
@@ -6364,7 +6364,7 @@ func runLinkDemo() error {
 			Height: strPtr("10"),
 			Visible: boolPtr(true),
 		},
-		Content: "Styled Text Demo with Links\n\n• Template literals with colors\n• Bold, underlined, and other styles\n• Background colors like this\n• Custom hex colors like this red\n• Hyperlinks: https://opentui.com\n\nType Examples:\nNumber: 42\nBoolean: true\nFloat: 3.14\nCalculated: 7",
+		Content: "Styled Text Demo with Links\n\n• Template literals with colors\n• Bold, underlined, and other styles\n• Background colors like this\n• Custom hex colors like this red\n• Hyperlinks: https://pixtui.com\n\nType Examples:\nNumber: 42\nBoolean: true\nFloat: 3.14\nCalculated: 7",
 		Attributes: core.TextAttributeBold,
 	})
 	content.SetPosition(1, 1)
@@ -6376,7 +6376,7 @@ func runLinkDemo() error {
 			Height: strPtr("2"),
 			Visible: boolPtr(true),
 		},
-		Content: "Links are rendered as underlined colored text: opentui",
+		Content: "Links are rendered as underlined colored text: pixtui",
 	})
 	info.SetPosition(1, 12)
 
@@ -7102,7 +7102,7 @@ func runConsoleDemo() error {
 	})
 
 	var sb strings.Builder
-	sb.WriteString("OpenTUI Console\n")
+	sb.WriteString("PixTui Console\n")
 	sb.WriteString("===============\n\n")
 	sb.WriteString("[10:00:01] System initialized.\n")
 	sb.WriteString("[10:00:02] Loading modules...\n")
@@ -7793,7 +7793,7 @@ func runTerminalTitle() error {
 			Visible: boolPtr(true),
 			Attributes: core.TextAttributeBold,
 		},
-		Content: "OpenTUI Terminal\nv1.0.0\n\nReady.",
+		Content: "PixTui Terminal\nv1.0.0\n\nReady.",
 	})
 	title.SetPosition(2, 2)
 
@@ -8192,7 +8192,7 @@ func runASCIIFontSelectionDemo() error {
 		x, y int
 		w, h int
 	}{
-		{"OPENTUI", 2, 2, 22, 5},
+		{"PIXTUI", 2, 2, 22, 5},
 		{"GO", 26, 2, 10, 5},
 		{"HELLO", 38, 2, 18, 5},
 		{"WORLD", 2, 9, 20, 5},
@@ -8322,7 +8322,7 @@ func runClipboardPasteDemo() error {
 	clipboard := native.NewClipboard()
 
 	// Copy text to clipboard.
-	copyText := "OpenTUI clipboard demo text"
+	copyText := "PixTui clipboard demo text"
 	_, copyErr := clipboard.Copy(copyText)
 
 	// Paste text from clipboard.
@@ -9716,7 +9716,7 @@ func runFontsDemo() error {
 		{"HELLO", []core.RGBA{{R: 255, G: 255, B: 255, A: 255}}, 2, 8},
 		{"1234567890", []core.RGBA{{R: 0, G: 255, B: 0, A: 255}}, 2, 12},
 		{"HI", []core.RGBA{{R: 255, G: 255, B: 0, A: 255}, {R: 0, G: 255, B: 255, A: 255}}, 2, 16},
-		{"OPENTUI", []core.RGBA{{R: 255, G: 80, B: 120, A: 255}, {R: 255, G: 60, B: 215, A: 255}}, 30, 2},
+		{"PIXTUI", []core.RGBA{{R: 255, G: 80, B: 120, A: 255}, {R: 255, G: 60, B: 215, A: 255}}, 30, 2},
 		{"GO", []core.RGBA{{R: 50, G: 255, B: 120, A: 255}, {R: 100, G: 255, B: 150, A: 255}}, 30, 8},
 	}
 
@@ -9794,7 +9794,7 @@ func runEmbeddedTerminalDemo() error {
 
 	// Write VT output to the embedded terminal.
 	terminal.Write([]byte("$ pixtui embedded terminal\r\n"))
-	terminal.Write([]byte("$ welcome to OpenTUI Go\r\n"))
+	terminal.Write([]byte("$ welcome to PixTui\r\n"))
 	terminal.Write([]byte("$ \x1b[1;32msystem ready\x1b[0m\r\n"))
 	terminal.Write([]byte("$ \x1b[1;31merror\x1b[0m: connection timeout\r\n"))
 	terminal.Write([]byte("$ \x1b[1;33mwarning\x1b[0m: low memory\r\n"))
@@ -9828,12 +9828,12 @@ func runEmbeddedTerminalDemo() error {
 }
 
 // ---------------------------------------------------------------------------
-// opentui-demo
+// pixtui-demo
 // ---------------------------------------------------------------------------
 
-// runOpenTUIDemo demonstrates text styling and color gradients, boxes with
-// borders and titles, mirroring the TypeScript opentui-demo.
-func runOpenTUIDemo() error {
+// runPixTuiDemo demonstrates text styling and color gradients, boxes with
+// borders and titles, mirroring the TypeScript pixtui-demo.
+func runPixTuiDemo() error {
 	renderer := core.NewCliRenderer(80, 24)
 	defer renderer.Destroy()
 
@@ -9842,13 +9842,13 @@ func runOpenTUIDemo() error {
 
 	box := renderables.NewBoxRenderable(ctx, renderables.BoxOptions{
 		RenderableOptions: core.RenderableOptions[core.Renderable]{
-			ID:     "opentui-demo-box",
+			ID:     "pixtui-demo-box",
 			Width:  strPtr("76"),
 			Height: strPtr("22"),
 			Visible: boolPtr(true),
 		},
 		Border: true,
-		Title:  "OpenTUI Demo (text styling & gradients)",
+		Title:  "PixTui Demo (text styling & gradients)",
 	})
 
 	// Text attributes.
@@ -9994,7 +9994,7 @@ func runOpenTUIDemo() error {
 
 	info := renderables.NewTextRenderable(ctx, renderables.TextOptions{
 		RenderableOptions: core.RenderableOptions[core.Renderable]{
-			ID:     "opentui-demo-info",
+			ID:     "pixtui-demo-info",
 			Width:  strPtr("72"),
 			Height: strPtr("3"),
 			Visible: boolPtr(true),
@@ -10500,7 +10500,7 @@ func runInputDemo() error {
 	nameInput.SetValue("Ada Lovelace")
 	emailInput.SetValue("ada@example.com")
 	passwordInput.SetValue("secret123")
-	commentInput.SetValue("First comment from OpenTUI Go")
+	commentInput.SetValue("First comment from PixTui")
 
 	status := renderables.NewTextRenderable(ctx, renderables.TextOptions{
 		RenderableOptions: core.RenderableOptions[core.Renderable]{
@@ -10912,7 +10912,7 @@ func runGoldenStarDemo() error {
 	})
 	d3Text.SetPosition(2, 2)
 
-	// ASCII title overlay ("OPENTUI" + "5000").
+	// ASCII title overlay ("PIXTUI" + "5000").
 	title := renderables.NewASCIIFontRenderable(ctx, renderables.ASCIIFontOptions{
 		RenderableOptions: core.RenderableOptions[core.Renderable]{
 			ID:     "golden-star-ascii",
@@ -10920,7 +10920,7 @@ func runGoldenStarDemo() error {
 			Height: strPtr("4"),
 			Visible: boolPtr(true),
 		},
-		Text: "OPENTUI",
+		Text: "PIXTUI",
 		Font: "block",
 	})
 	title.SetPosition(42, 2)
@@ -11000,7 +11000,7 @@ func runHastSyntaxHighlightingDemo() error {
   return "Hello, " + name;
 }
 
-console.log(greet("OpenTUI"));`
+console.log(greet("PixTui"));`
 	tsRenderable := renderables.NewCodeRenderable(ctx, renderables.CodeOptions{
 		RenderableOptions: core.RenderableOptions[core.Renderable]{
 			ID:     "hast-ts",
@@ -11059,7 +11059,7 @@ func main() {
 	pyCode := `def greet(name):
     return f"Hello, {name}"
 
-print(greet("OpenTUI"))`
+print(greet("PixTui"))`
 	pyRenderable := renderables.NewCodeRenderable(ctx, renderables.CodeOptions{
 		RenderableOptions: core.RenderableOptions[core.Renderable]{
 			ID:     "hast-py",

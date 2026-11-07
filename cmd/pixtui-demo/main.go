@@ -39,7 +39,7 @@ func (e *demoEvent) PropagationStopped() bool { return e.stopped }
 type demoTarget struct{ name string }
 
 func main() {
-	fmt.Fprintf(os.Stderr, "OpenTUI Go Demo - Starting...\n")
+	fmt.Fprintf(os.Stderr, "PixTui Demo - Starting...\n")
 
 	renderer := core.NewCliRenderer(80, 24)
 	defer renderer.Destroy()
@@ -110,7 +110,7 @@ func main() {
 		Border:          true,
 		BorderColor:     func() *core.RGBA { c := renderables.ParseHex("#FFFFFF"); return &c }(),
 		ShouldFill:      false,
-		Title:           "OpenTUI Go - Complete TUI Library",
+		Title:           "PixTui - Complete TUI Library",
 		TitleAlignment:  "left",
 		Focusable:       true,
 	})
@@ -123,7 +123,7 @@ func main() {
 			Height:  strPtr("1"),
 			Visible: boolPtr(true),
 		},
-		Content: "Welcome to OpenTUI Go - A complete Go port of OpenTUI",
+		Content: "Welcome to PixTui - A complete Go port of PixTui",
 	})
 
 	// Create info text
@@ -346,7 +346,7 @@ func main() {
 	root.AddChild(mainBox.Renderable)
 
 	// Create QR code demo
-	qr, err := qrcode.NewQRCode("https://github.com/anomalyco/opentui", qrcode.LevelM)
+	qr, err := qrcode.NewQRCode("https://github.com/Gomobra/PixTui", qrcode.LevelM)
 	if err == nil {
 		fmt.Fprintf(os.Stderr, "QR Code generated (%dx%d):\n%s\n", qr.Width, qr.Height, qr.Render())
 	}

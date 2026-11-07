@@ -5,7 +5,7 @@ import (
 )
 
 // ---------------------------------------------------------------------------
-// Testing utilities (mirrors @opentui/keymap/src/testing)
+// Testing utilities (mirrors @pixtui/keymap/src/testing)
 // ---------------------------------------------------------------------------
 
 // TestKeyModifierOptions are optional modifiers for a test key event.
@@ -548,10 +548,10 @@ func RegisterDefaultKeys(km *Keymap[*TestKeymapTarget, *TestKeymapEvent], root *
 
 // RegisterKeymapReact is a placeholder for React framework integration.
 // In the Go port this is a no-op; React bindings are provided by the
-// @opentui/keymap/react TypeScript entrypoint in the original repository.
+// @pixtui/keymap/react TypeScript entrypoint in the original repository.
 func RegisterKeymapReact() {}
 
 // RegisterKeymapSolid is a placeholder for Solid framework integration.
 // In the Go port this is a no-op; Solid bindings are provided by the
-// @opentui/keymap/solid TypeScript entrypoint in the original repository.
+// @pixtui/keymap/solid TypeScript entrypoint in the original repository.
 func RegisterKeymapSolid() {}

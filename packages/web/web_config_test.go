@@ -11,7 +11,7 @@ import (
 
 func TestSiteConfigDefaults(t *testing.T) {
 	cfg := defaultSiteConfig()
-	if cfg.Title != "OpenTUI Go Documentation" {
+	if cfg.Title != "PixTui Documentation" {
 		t.Errorf("expected default title, got %q", cfg.Title)
 	}
 	if cfg.OutputDir != "_site" {

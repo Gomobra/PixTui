@@ -6,7 +6,7 @@ import (
 	"sync/atomic"
 )
 
-// Status codes mirroring opentui.h
+// Status codes mirroring pixtui.h
 const (
 	OT_OK                            = 0
 	OT_INVALID_ARGUMENT              = -1
@@ -109,7 +109,7 @@ const (
 	ContextStatusClosed  ContextStatus = iota
 )
 
-// Handle mirrors ot_handle from opentui.h
+// Handle mirrors ot_handle from pixtui.h
 type Handle struct {
 	ContextID  uint64
 	Slot       uint32

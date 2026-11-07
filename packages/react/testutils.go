@@ -14,7 +14,7 @@ type TestRendererOptions struct {
 
 // TestRenderer wraps a core testing.TestRenderer together with the React
 // renderer used to mount a React element tree. It mirrors the
-// @opentui/react test-utils `testRender` helper.
+// @pixtui/react test-utils `testRender` helper.
 type TestRenderer struct {
 	*coretesting.TestRenderer
 	React *ReactRenderer
@@ -23,7 +23,7 @@ type TestRenderer struct {
 
 // TestRender mounts a React element tree into a test renderer and returns a
 // TestRenderer that can be used to inspect the rendered output. It is the Go
-// equivalent of the TypeScript `testRender` from @opentui/react/test-utils.
+// equivalent of the TypeScript `testRender` from @pixtui/react/test-utils.
 // The React renderer paints directly into the test renderer's buffer, so no
 // separate CliRenderer commit is required.
 func TestRender(element ReactElement, opts TestRendererOptions) *TestRenderer {

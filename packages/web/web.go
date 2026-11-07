@@ -439,7 +439,7 @@ func (p *Page) SearchableText() string {
 	return strings.Join(parts, " ")
 }
 
-// Logo represents the OpenTUI logo.
+// Logo represents the PixTui logo.
 var Logo = []byte{}
 
 // Build builds the documentation site.
@@ -843,7 +843,7 @@ func makeHighlight(text string, tokens []string) string {
 // renderNav renders the site navigation bar HTML.
 func renderNav(site *Site) string {
 	var sb strings.Builder
-	sb.WriteString("<nav><strong>OpenTUI Go Docs</strong> ")
+	sb.WriteString("<nav><strong>PixTui Docs</strong> ")
 	sb.WriteString("<a href=\"/\">Home</a> ")
 	sb.WriteString("<a href=\"/docs\">Docs</a> ")
 	sb.WriteString("<a href=\"/api\">API</a> ")
@@ -1166,7 +1166,7 @@ func (s *Site) openAPIDoc() *OpenAPI {
 		OpenAPI: "3.0.1",
 		Info: OpenAPIInfo{
 			Title:       s.title,
-			Description: "OpenTUI Go documentation and API server.",
+			Description: "PixTui documentation and API server.",
 			Version:     "1.0.0",
 		},
 		Paths: map[string]*OpenAPIPathItem{
@@ -1327,47 +1327,47 @@ func (s *Site) openAPIDoc() *OpenAPI {
 //   GET /robots.txt          - robots.txt
 //   GET /openapi.json        - OpenAPI document
 func Serve(addr string) error {
-	site := NewSite("OpenTUI Go Documentation")
+	site := NewSite("PixTui Documentation")
 
 	// Register default pages.
 	site.AddPageWithOrder(NewPageWithOptions(
 		"/", "Home", "Home", "",
-		"<h1>OpenTUI Go</h1><p>Welcome to the OpenTUI Go documentation.</p>",
-		"OpenTUI Go documentation home page.", 0, 100,
-		[]string{"opentui", "home", "welcome"},
+		"<h1>PixTui</h1><p>Welcome to the PixTui documentation.</p>",
+		"PixTui documentation home page.", 0, 100,
+		[]string{"pixtui", "home", "welcome"},
 		map[string]string{"section": "home", "lang": "en"},
 	), 0)
 	site.AddPageWithOrder(NewPageWithOptions(
 		"/docs", "Documentation", "Documentation", "",
-		"<h1>OpenTUI Go Documentation</h1><p>Official OpenTUI Go documentation index.</p>",
-		"OpenTUI Go documentation index.", 1, 90,
+		"<h1>PixTui Documentation</h1><p>Official PixTui documentation index.</p>",
+		"PixTui documentation index.", 1, 90,
 		[]string{"docs", "documentation", "guide"},
 		map[string]string{"section": "docs", "lang": "en"},
 	), 1)
 	site.AddPageWithOrder(NewPageWithOptions(
 		"/about", "About", "About", "",
-		"<h1>About OpenTUI</h1><p>OpenTUI is a terminal user interface framework written in Go.</p>",
-		"About OpenTUI Go.", 2, 80,
-		[]string{"about", "opentui"},
+		"<h1>About PixTui</h1><p>PixTui is a terminal user interface framework written in Go.</p>",
+		"About PixTui.", 2, 80,
+		[]string{"about", "pixtui"},
 		map[string]string{"section": "about", "lang": "en"},
 	), 2)
 
 	// Register default API docs.
 	site.AddAPIDoc(&APIDoc{
-		Module:     "opentui/core",
+		Module:     "pixtui/core",
 		Slug:       "core",
-		Title:      "OpenTUI Core",
-		Description: "Core rendering and layout API for OpenTUI Go.",
+		Title:      "PixTui Core",
+		Description: "Core rendering and layout API for PixTui.",
 		Exports: []APIDocExport{
 			{Name: "Renderer", Kind: ExportKindClasses, Declarations: []string{"type Renderer struct"}, Guide: "/docs/core-concepts/renderer"},
 			{Name: "Renderable", Kind: ExportKindInterfaces, Declarations: []string{"type Renderable interface"}, Guide: "/docs/core-concepts/renderables"},
 		},
 	})
 	site.AddAPIDoc(&APIDoc{
-		Module:     "opentui/components",
+		Module:     "pixtui/components",
 		Slug:       "components",
 		Title:      "Components",
-		Description: "Built-in UI components for OpenTUI Go.",
+		Description: "Built-in UI components for PixTui.",
 		Exports: []APIDocExport{
 			{Name: "Box", Kind: ExportKindClasses, Declarations: []string{"type Box struct"}, Guide: "/docs/components/box"},
 			{Name: "Text", Kind: ExportKindClasses, Declarations: []string{"type Text struct"}, Guide: "/docs/components/text"},
@@ -1389,7 +1389,7 @@ func Serve(addr string) error {
 		Version: "0.6.0",
 		Date:    "2026-10-10",
 		Summary: "Layout, hit testing, and painting move into a native scene, and native rendering resources now belong to an owner Context.",
-		Body:    "OpenTUI 0.5 kept the renderable tree in JavaScript. On each frame, JavaScript walked the tree and read each node's position back from Yoga. In 0.6.0, native code owns the tree. Each Renderable has a node in a native scene.",
+		Body:    "PixTui 0.5 kept the renderable tree in JavaScript. On each frame, JavaScript walked the tree and read each node's position back from Yoga. In 0.6.0, native code owns the tree. Each Renderable has a node in a native scene.",
 		Changes: []ReleaseChange{
 			{Section: "Breaking changes", Markdown: "- Renderable no longer has render(), getLayoutNode(), or a protected yogaNode.", Docs: []string{"/docs/extend/custom-renderables"}},
 			{Section: "Added", Markdown: "- Native scene owns the renderable tree.", Docs: []string{"/docs/core-concepts/rendering-pipeline"}},
@@ -1523,7 +1523,7 @@ func Serve(addr string) error {
 
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		nav := renderNav(site)
-		fmt.Fprint(w, "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Search - OpenTUI Go</title><style>body{font-family:sans-serif;margin:0;padding:1em;background:#f5f5f5;color:#222}nav{background:#1a1a1a;color:#fff;padding:1em}nav a{color:#4fc3f7;margin-right:1em;text-decoration:none}nav a:hover{text-decoration:underline}main{background:#fff;padding:1em;border-radius:4px;margin-top:1em}form{margin-bottom:1em}input[type=\"text\"]{width:100%%;padding:0.5em;font-size:1em;border:1px solid #ddd;border-radius:4px}ul{list-style:none;padding:0}li{margin-bottom:0.5em;padding:0.5em;border:1px solid #eee;border-radius:4px}li a{color:#1a73e8;text-decoration:none}li a:hover{text-decoration:underline}.badge{background:#e3f2fd;padding:0.1em 0.5em;border-radius:10px;font-size:0.85em;margin-left:0.5em}</style></head><body>")
+		fmt.Fprint(w, "<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>Search - PixTui</title><style>body{font-family:sans-serif;margin:0;padding:1em;background:#f5f5f5;color:#222}nav{background:#1a1a1a;color:#fff;padding:1em}nav a{color:#4fc3f7;margin-right:1em;text-decoration:none}nav a:hover{text-decoration:underline}main{background:#fff;padding:1em;border-radius:4px;margin-top:1em}form{margin-bottom:1em}input[type=\"text\"]{width:100%%;padding:0.5em;font-size:1em;border:1px solid #ddd;border-radius:4px}ul{list-style:none;padding:0}li{margin-bottom:0.5em;padding:0.5em;border:1px solid #eee;border-radius:4px}li a{color:#1a73e8;text-decoration:none}li a:hover{text-decoration:underline}.badge{background:#e3f2fd;padding:0.1em 0.5em;border-radius:10px;font-size:0.85em;margin-left:0.5em}</style></head><body>")
 		fmt.Fprint(w, nav)
 		fmt.Fprint(w, "<main>")
 		fmt.Fprint(w, "<h1>Search</h1>")

@@ -6,7 +6,7 @@ import (
 )
 
 // ---------------------------------------------------------------------------
-// SVG and terminal rendering (mirrors @opentui/qrcode/src/lib/qrcode.render.ts)
+// SVG and terminal rendering (mirrors @pixtui/qrcode/src/lib/qrcode.render.ts)
 // ---------------------------------------------------------------------------
 
 // TerminalRenderOptions controls terminal rendering of a QR code matrix.

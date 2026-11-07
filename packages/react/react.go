@@ -56,7 +56,7 @@ var Fragment = "fragment"
 var componentRegistry = make(map[string]ComponentFunc)
 
 // RegisterComponent registers a function component under a name, mirroring the
-// @opentui/react extend() API used by framework packages like @opentui/qrcode.
+// @pixtui/react extend() API used by framework packages like @pixtui/qrcode.
 func RegisterComponent(name string, fn ComponentFunc) {
 	componentRegistry[name] = fn
 }
@@ -359,7 +359,7 @@ type effectSlot struct {
 	cleanup func()
 }
 
-// ReactRenderer renders React element trees to OpenTUI renderables using
+// ReactRenderer renders React element trees to PixTui renderables using
 // an incremental reconciler (fiber-based diffing) and a working hooks
 // subsystem.
 type ReactRenderer struct {

@@ -1,7 +1,7 @@
 package qrcode
 
 // ---------------------------------------------------------------------------
-// Encoding library (mirrors @opentui/qrcode/src/lib/qrcode.encoding.ts)
+// Encoding library (mirrors @pixtui/qrcode/src/lib/qrcode.encoding.ts)
 // ---------------------------------------------------------------------------
 
 // ByteEncoding is the character encoding used for byte-mode segments.

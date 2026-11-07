@@ -1,5 +1,5 @@
 // Package post provides post-processing pipeline (filters, matrices, effects)
-// for the OpenTUI Go port. It mirrors the TypeScript implementation found in
+// for the PixTui port. It mirrors the TypeScript implementation found in
 // packages/core/src/post/ of the original repository.
 //
 // To avoid an import cycle (core -> post -> core), the post package does not

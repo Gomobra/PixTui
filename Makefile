@@ -1,12 +1,12 @@
-# OpenTUI Go Build System
-# Mirrors the build system from the original anomalyco/opentui repository
+# PixTui Build System
+# Mirrors the build system from the original Gomobra/PixTui repository
 
 .PHONY: all build test vet fmt clean demo install run release
 
 GO ?= go
 GOFLAGS ?= -mod=mod
 BUILD_DIR ?= build
-BINARY ?= opentui-demo
+BINARY ?= pixtui-demo
 
 all: build
 
@@ -14,7 +14,7 @@ build:
 	$(GO) build $(GOFLAGS) ./...
 
 demo:
-	$(GO) build $(GOFLAGS) -o $(BUILD_DIR)/$(BINARY) ./cmd/opentui-demo/
+	$(GO) build $(GOFLAGS) -o $(BUILD_DIR)/$(BINARY) ./cmd/pixtui-demo/
 
 run: demo
 	./$(BUILD_DIR)/$(BINARY)
@@ -36,17 +36,17 @@ clean:
 	$(GO) clean -cache
 
 install: build
-	$(GO) install $(GOFLAGS) ./cmd/opentui-demo/
+	$(GO) install $(GOFLAGS) ./cmd/pixtui-demo/
 
 # Cross-platform builds
 build-linux:
-	GOOS=linux GOARCH=amd64 $(GO) build $(GOFLAGS) -o $(BUILD_DIR)/opentui-demo-linux-amd64 ./cmd/opentui-demo/
+	GOOS=linux GOARCH=amd64 $(GO) build $(GOFLAGS) -o $(BUILD_DIR)/pixtui-demo-linux-amd64 ./cmd/pixtui-demo/
 
 build-darwin:
-	GOOS=darwin GOARCH=amd64 $(GO) build $(GOFLAGS) -o $(BUILD_DIR)/opentui-demo-darwin-amd64 ./cmd/opentui-demo/
+	GOOS=darwin GOARCH=amd64 $(GO) build $(GOFLAGS) -o $(BUILD_DIR)/pixtui-demo-darwin-amd64 ./cmd/pixtui-demo/
 
 build-windows:
-	GOOS=windows GOARCH=amd64 $(GO) build $(GOFLAGS) -o $(BUILD_DIR)/opentui-demo-windows-amd64.exe ./cmd/opentui-demo/
+	GOOS=windows GOARCH=amd64 $(GO) build $(GOFLAGS) -o $(BUILD_DIR)/pixtui-demo-windows-amd64.exe ./cmd/pixtui-demo/
 
 # Module management
 tidy:

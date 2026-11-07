@@ -1,5 +1,5 @@
-# @opentui/ssh
-SSH server integration for OpenTUI Go
+# @pixtui/ssh
+SSH server integration for PixTui
 
 ## Installation
 

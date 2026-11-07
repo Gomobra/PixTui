@@ -1,5 +1,5 @@
-# @opentui/web
-Documentation website for OpenTUI Go
+# @pixtui/web
+Documentation website for PixTui
 
 ## Installation
 
@@ -17,8 +17,8 @@ import (
 )
 
 func main() {
-	site := web.NewSite("OpenTUI Docs")
-	page := web.NewPage("Getting Started", "# Getting Started\n\nWelcome to OpenTUI Go!")
+	site := web.NewSite("PixTui Docs")
+	page := web.NewPage("Getting Started", "# Getting Started\n\nWelcome to PixTui!")
 	site.AddPage(page)
 }
 ```

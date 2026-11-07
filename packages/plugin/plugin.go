@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-// Plugin is the interface that all OpenTUI plugins must implement.
+// Plugin is the interface that all PixTui plugins must implement.
 type Plugin interface {
 	// Name returns the unique plugin name.
 	Name() string
@@ -111,7 +111,7 @@ type CommandInfo struct {
 	Description string
 }
 
-// Context provides plugins with access to OpenTUI core services.
+// Context provides plugins with access to PixTui core services.
 type Context struct {
 	// RegisterRenderable registers a custom renderable type.
 	RegisterRenderable func(typeName string, factory RenderableFactory)

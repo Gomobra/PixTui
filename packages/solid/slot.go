@@ -75,7 +75,7 @@ type SlotProps struct {
 }
 
 // Slot renders registered slot entries for the given name, mirroring the
-// Solid slot plugin from @opentui/solid. Entries are rendered according to
+// Solid slot plugin from @pixtui/solid. Entries are rendered according to
 // the slot mode: append (default) shows children followed by entries,
 // single_winner shows only the first entry, replace shows only entries.
 func Slot(props SlotProps) SolidComponent {

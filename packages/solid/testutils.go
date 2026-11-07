@@ -14,7 +14,7 @@ type TestRenderOptions struct {
 
 // TestRender mounts a Solid component tree into a test renderer and returns
 // the underlying test renderer for inspection. It mirrors the TypeScript
-// `testRender` exported from @opentui/solid.
+// `testRender` exported from @pixtui/solid.
 func TestRender(component SolidComponent, opts TestRenderOptions) *coretesting.TestRenderer {
 	width := opts.Width
 	if width == 0 {

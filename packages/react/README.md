@@ -1,5 +1,5 @@
-# @opentui/react
-React bindings for OpenTUI Go
+# @pixtui/react
+React bindings for PixTui
 
 ## Installation
 
